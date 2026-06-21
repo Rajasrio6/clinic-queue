@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Modern Purple & Semantic Theme */
+  --bg-primary: #F4F7FC; /* Light Theme Accent */
+  --bg-secondary: #FFFFFF; /* Sidebar */
+  --bg-tertiary: #F5F7FA;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FCFCFD;
+  --border-color: #E4E7EC;
+  --border-focus: #7C3AED;
+  
+  --text-primary: #111827;
+  --text-secondary: #475467;
+  --text-muted: #667085;
+  --text-placeholder: #98A2B3;
+  
+  --primary: #7C3AED;
+  --primary-hover: #6D28D9;
+  --primary-glow: rgba(124, 58, 237, 0.35);
+  
+  --secondary: #A855F7;
+  --secondary-hover: #9333EA;
+  
+  --emergency: #F04438;
+  --emergency-glow: #FEF3F2;
+  --urgent: #F79009;
+  --urgent-glow: #FFF7E6;
+  --routine: #12B76A;
+  --routine-glow: #ECFDF3;
+  --info: #2E90FA;
+  --info-glow: #EFF8FF;
+  
+  --card-shadow: 0 8px 24px rgba(16,24,40,.08);
+  --glass-shadow: 0 8px 24px rgba(16,24,40,.08);
+  --blur-amount: 12px;
+  
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='dark'] {
+  /* Sleek Dark Theme Palette */
+  --bg-primary: #0a0f1d;
+  --bg-secondary: #131b2e;
+  --bg-tertiary: #1a233a;
+  --bg-card: rgba(26, 36, 59, 0.7);
+  --bg-card-hover: rgba(36, 49, 79, 0.85);
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-focus: rgba(59, 130, 246, 0.5);
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-glow: rgba(59, 130, 246, 0.25);
+  
+  --secondary: #0ea5e9;
+  --secondary-hover: #0284c7;
+  
+  --emergency: #f43f5e;
+  --emergency-glow: rgba(244, 63, 94, 0.25);
+  --urgent: #f59e0b;
+  --urgent-glow: rgba(245, 158, 11, 0.25);
+  --routine: #10b981;
+  --routine-glow: rgba(16, 185, 129, 0.25);
+  
+  --card-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background var(--transition-normal), color var(--transition-normal);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Glass panel style helper */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Glow effects */
+.glow-emergency {
+  box-shadow: 0 0 15px var(--emergency-glow);
+  border-color: rgba(244, 63, 94, 0.4) !important;
+}
+
+.glow-urgent {
+  box-shadow: 0 0 15px var(--urgent-glow);
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+.glow-routine {
+  box-shadow: 0 0 15px var(--routine-glow);
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Common Animations */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(244, 63, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0);
+  }
+}
+
+.pulse-emergency {
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes call-flash {
+  0%, 100% {
+    background-color: var(--bg-card);
+    box-shadow: var(--glass-shadow);
+  }
+  50% {
+    background-color: rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3), inset 0 0 15px rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.5);
+  }
+}
+
+.flash-active-call {
+  animation: call-flash 1.5s infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 50s linear infinite;
+}
