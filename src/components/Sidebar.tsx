@@ -7,9 +7,7 @@ import {
   Tv, 
   BarChart3, 
   Sun, 
-  Moon, 
-  Database, 
-  Trash2 
+  Moon
 } from 'lucide-react';
 import type { Patient } from '../types';
 
